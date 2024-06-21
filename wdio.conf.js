@@ -55,6 +55,9 @@ exports.config = {
     // capabilities for local browser web tests
         browserName: 'chrome', // or "firefox", "microsoftedge", "safari"
         browserVersion: 'stable',
+        'goog:chromeOptions': {
+            args: ['--window-size=1920,1080'],
+        },
     }],
     //
     // ===================
