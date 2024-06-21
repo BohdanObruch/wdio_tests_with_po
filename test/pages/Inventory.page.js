@@ -17,14 +17,12 @@ class InventoryPage extends BaseSwagLabPage {
 
     get activeOption() { return $('.active_option'); }
 
-    get sortOption() { return $('.product_sort_container'); }
-
     sortItems(value) {
         return `option[value="${value}"]`;
     }
 
     getSortItem(value) {
-        return this.sortOption.$(this.sortItems(value));
+        return this.sort.$(this.sortItems(value));
     }
 
     async getActiveOptionText() {
