@@ -1,8 +1,9 @@
 const { pages } = require('../pages/Pages');
+const credentials = require('../config/credentials');
 
 async function login() {
     await pages.loginPage.navigate();
-    await pages.loginPage.performLogin('standard_user', 'secret_sauce');
+    await pages.loginPage.performLogin(credentials.username, credentials.password);
 }
 
 describe('Sorting the inventory items', () => {

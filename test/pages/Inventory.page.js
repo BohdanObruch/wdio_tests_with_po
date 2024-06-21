@@ -9,32 +9,34 @@ class InventoryPage extends BaseSwagLabPage {
 
     get addItemToCartBtns() { return $$('[id^="add-to-cart"]'); }
 
-    get inventoryItemsNames() { return $$('.inventory_item_name'); }
+    inventoryItemsName = '.inventory_item_name';
 
-    get inventoryItemsPrices() { return $$('.inventory_item_price'); }
+    inventoryItemsPrice = '.inventory_item_price';
 
     get sort() { return $('.product_sort_container'); }
 
     get activeOption() { return $('.active_option'); }
 
-    // getSortItem(value) {
-    //     return $(`.product_sort_container option[value="${value}"]`);
-    // }
-    getSortItem(value) {
-        return $('.product_sort_container').$(`option[value="${value}"]`);
+    get sortOption() { return $('.product_sort_container'); }
+
+    sortItems(value) {
+        return `option[value="${value}"]`;
     }
 
+    getSortItem(value) {
+        return this.sortOption.$(this.sortItems(value));
+    }
 
     async getActiveOptionText() {
         return this.activeOption.getText();
     }
 
     async getInventoryItemsNamesText(item) {
-        return this.inventoryItemsNames[item].getText();
+        return this.inventoryItems[item].$(this.inventoryItemsName).getText();
     }
 
     async getInventoryItemsPricesText(item) {
-        return this.inventoryItemsPrices[item].getText();
+        return this.inventoryItems[item].$(this.inventoryItemsPrice).getText();
     }
 
     async sortItemsBy(value) {
