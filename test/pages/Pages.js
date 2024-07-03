@@ -1,11 +1,13 @@
 const { InventoryPage } = require('./Inventory.page');
 const { LoginPage } = require('./Login.page');
-const { ShopingCartPage } = require('./ShopingCart.page');
+const { ShoppingCartPage } = require('./ShoppingCart.page');
+const { BaseSwagLabPage } = require('./BaseSwagLab.page');
 
 module.exports = {
     pages: {
         loginPage: new LoginPage(),
         inventoryPage: new InventoryPage(),
-        shopingCartPage: new ShopingCartPage(),
+        shoppingCartPage: new ShoppingCartPage(),
+        baseSwagLabPage: new BaseSwagLabPage(),
     },
 };

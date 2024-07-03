@@ -4,12 +4,15 @@ class BaseSwagLabPage extends BasePage {
     // header
     get mainMenuBtn() { return $('TBD'); }
 
-    get shopingCart() { return $('.shopping_cart_link'); }
+    get shoppingCart() { return $('.shopping_cart_link'); }
 
-    get shopingCartBadge() { return $('.shopping_cart_badge'); }
+    get shoppingCartBadge() { return $('.shopping_cart_badge'); }
 
     async getNumberOfItemsInCart() {
-        return this.shopingCartBadge.getText();
+        return this.shoppingCartBadge.getText();
+    }
+    async clickOnShoppingCart() {
+        await this.shoppingCart.click();
     }
 }
 

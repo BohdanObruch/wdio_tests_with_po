@@ -1,6 +1,6 @@
 const { BaseSwagLabPage } = require('./BaseSwagLab.page');
 
-class ShopingCartPage extends BaseSwagLabPage {
+class ShoppingCartPage extends BaseSwagLabPage {
     url = '/cart.html';
 
     cartItemSelector = '.cart_item';
@@ -24,4 +24,4 @@ class ShopingCartPage extends BaseSwagLabPage {
     }
 }
 
-module.exports = { ShopingCartPage };
+module.exports = { ShoppingCartPage };
