@@ -7,6 +7,12 @@ class ShoppingCartPage extends BaseSwagLabPage {
 
     removeItemSelector = '[id^="remove"]';
 
+    itemsName = '.inventory_item_name';
+
+    itemsPrice = '.inventory_item_price';
+
+    itemsDescription = '.inventory_item_desc';
+
     get headerTitle() { return $('.title'); }
 
     get cartItems() { return $$(this.cartItemSelector); }
@@ -21,6 +27,38 @@ class ShoppingCartPage extends BaseSwagLabPage {
 
     async removeCartItemById(id) {
         await this.cartItems[id].$(this.removeItemSelector).click();
+    }
+
+
+    async getItemsPrices() {
+        const elements = await $$(this.itemsPrice);
+        const prices = [];
+        for (const element of elements) {
+            const priceText = await element.getText();
+            const price = parseFloat(priceText.replace('$', ''));
+            prices.push(price);
+        }
+        return prices;
+    }
+
+    async getItemsNames() {
+        const elements = await $$(this.itemsName);
+        const names = [];
+        for (const element of elements) {
+            const name = await element.getText();
+            names.push(name.toLowerCase());
+        }
+        return names;
+    }
+
+    async getItemsDescriptions() {
+        const elements = await $$(this.itemsDescription);
+        const descriptions = [];
+        for (const element of elements) {
+            const description = await element.getText();
+            descriptions.push(description.toLowerCase());
+        }
+        return descriptions;
     }
 }
 

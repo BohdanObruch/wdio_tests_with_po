@@ -27,10 +27,6 @@ class InventoryPage extends BaseSwagLabPage {
         return this.sort.$(this.sortItems(value));
     }
 
-    async getInventoryItems() {
-        return this.inventoryItems.length;
-    }
-
     async getActiveOptionText() {
         return this.activeOption.getText();
     }
@@ -52,12 +48,10 @@ class InventoryPage extends BaseSwagLabPage {
         await this.addItemToCartBtns[id].click();
     }
 
-    async getInventoryItemsPrices() {
+    async getInventoryItemsAllPrices() {
         const elements = await $$(this.inventoryItemsPrice);
         const prices = [];
-        // eslint-disable-next-line no-restricted-syntax
         for (const element of elements) {
-            // eslint-disable-next-line no-await-in-loop
             const priceText = await element.getText();
             const price = parseFloat(priceText.replace('$', ''));
             prices.push(price);
@@ -65,12 +59,10 @@ class InventoryPage extends BaseSwagLabPage {
         return prices;
     }
 
-    async getInventoryItemsNames() {
+    async getInventoryItemsAllNames() {
         const elements = await $$(this.inventoryItemsName);
         const names = [];
-        // eslint-disable-next-line no-restricted-syntax
         for (const element of elements) {
-            // eslint-disable-next-line no-await-in-loop
             const name = await element.getText();
             names.push(name.toLowerCase());
         }
@@ -78,23 +70,34 @@ class InventoryPage extends BaseSwagLabPage {
     }
 
     async addItemsToCart(randomItems) {
-        // eslint-disable-next-line no-restricted-syntax
         for (const item of randomItems) {
-            // eslint-disable-next-line no-await-in-loop
             await this.addItemToCartById(item);
         }
     }
 
-    async getInventoryItemsDescriptions() {
+    async getInventoryItemsAllDescriptions() {
         const elements = await $$(this.inventoryItemsDescription);
         const descriptions = [];
-        // eslint-disable-next-line no-restricted-syntax
         for (const element of elements) {
-            // eslint-disable-next-line no-await-in-loop
             const description = await element.getText();
-            descriptions.push(description.toLowerCase());
+            descriptions.push(description);
         }
         return descriptions;
+    }
+
+    async getInventoryItemsPrices(selectedItemsIndexes) {
+        return Promise.all(selectedItemsIndexes.map(async (index) => {
+            const priceText = await (await $$(this.inventoryItemsPrice))[index].getText();
+            return parseFloat(priceText.replace('$', ''));
+        }));
+    }
+
+    async getInventoryItemsNames(selectedItemsIndexes) {
+        return Promise.all(selectedItemsIndexes.map(async (index) => (await $$(this.inventoryItemsName))[index].getText()));
+    }
+
+    async getInventoryItemsDescriptions(selectedItemsIndexes) {
+        return Promise.all(selectedItemsIndexes.map(async (index) => (await $$(this.inventoryItemsDescription))[index].getText()));
     }
 }
 module.exports = { InventoryPage };

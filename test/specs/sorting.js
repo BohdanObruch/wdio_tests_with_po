@@ -8,10 +8,10 @@ const {
 
 describe('Sorting the inventory items', () => {
     const sorting = [
-        ['Name (A to Z)', 'az', isSortedAlphabetically, false, 'getInventoryItemsNames'],
-        ['Name (Z to A)', 'za', isSortedAlphabetically, true, 'getInventoryItemsNames'],
-        ['Price (low to high)', 'lohi', isSortedByPrice, false, 'getInventoryItemsPrices'],
-        ['Price (high to low)', 'hilo', isSortedByPrice, true, 'getInventoryItemsPrices'],
+        ['Name (A to Z)', 'az', isSortedAlphabetically, false, 'getInventoryItemsAllNames'],
+        ['Name (Z to A)', 'za', isSortedAlphabetically, true, 'getInventoryItemsAllNames'],
+        ['Price (low to high)', 'lohi', isSortedByPrice, false, 'getInventoryItemsAllPrices'],
+        ['Price (high to low)', 'hilo', isSortedByPrice, true, 'getInventoryItemsAllPrices'],
     ];
 
     sorting.forEach(([expectedText, sortType, sortFunction, isDescending, getItemsMethod]) => {
