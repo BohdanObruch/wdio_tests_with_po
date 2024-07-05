@@ -99,5 +99,19 @@ class InventoryPage extends BaseSwagLabPage {
     async getInventoryItemsDescriptions(selectedItemsIndexes) {
         return Promise.all(selectedItemsIndexes.map(async (index) => (await $$(this.inventoryItemsDescription))[index].getText()));
     }
+
+    async getItemsDetails(selectedItemsIndexes) {
+        const details = await Promise.all([
+            this.getInventoryItemsNames(selectedItemsIndexes),
+            this.getInventoryItemsDescriptions(selectedItemsIndexes),
+            this.getInventoryItemsPrices(selectedItemsIndexes),
+        ]);
+
+        return details[0].map((name, index) => ({
+            name,
+            description: details[1][index],
+            price: details[2][index],
+        }));
+    }
 }
 module.exports = { InventoryPage };

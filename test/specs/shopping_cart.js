@@ -1,8 +1,8 @@
+const deepEqual = require('deep-equal');
 const { randomChoiceItems } = require('../utils/choice_random_items');
 
 const { pages } = require('../pages/Pages');
 const { standardUser } = require('../config/credentials');
-const deepEqual = require('deep-equal');
 
 describe('Adding random items to the shopping cart', () => {
     it('Add and verify items', async () => {
@@ -15,18 +15,12 @@ describe('Adding random items to the shopping cart', () => {
 
         await pages.inventoryPage.addItemsToCart(randomItems);
 
-        const cartItemsNames = await pages.inventoryPage.getInventoryItemsNames(randomItems);
-        const cartItemsDescriptions = await pages.inventoryPage.getInventoryItemsDescriptions(randomItems);
-        const cartItemsPrices = await pages.inventoryPage.getInventoryItemsPrices(randomItems);
+        const cartItemsDetails = await pages.inventoryPage.getItemsDetails(randomItems);
 
         await pages.baseSwagLabPage.shoppingCart.click();
 
-        const shoppingCartItemsNames = await pages.shoppingCartPage.getItemsNames();
-        const shoppingCartItemsDescriptions = await pages.shoppingCartPage.getItemsDescriptions();
-        const shoppingCartItemsPrices = await pages.shoppingCartPage.getItemsPrices();
+        const shoppingCartItemsDetails = await pages.shoppingCartPage.getItemsDetails();
 
-        deepEqual(cartItemsNames, shoppingCartItemsNames);
-        deepEqual(cartItemsDescriptions, shoppingCartItemsDescriptions);
-        deepEqual(cartItemsPrices, shoppingCartItemsPrices);
+        deepEqual(cartItemsDetails, shoppingCartItemsDetails);
     });
 });

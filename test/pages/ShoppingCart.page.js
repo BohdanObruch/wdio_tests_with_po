@@ -60,6 +60,20 @@ class ShoppingCartPage extends BaseSwagLabPage {
         }
         return descriptions;
     }
+
+    async getItemsDetails() {
+        const [names, descriptions, prices] = await Promise.all([
+            this.getItemsNames(),
+            this.getItemsDescriptions(),
+            this.getItemsPrices(),
+        ]);
+
+        return names.map((name, index) => ({
+            name,
+            description: descriptions[index],
+            price: prices[index],
+        }));
+    }
 }
 
 module.exports = { ShoppingCartPage };
