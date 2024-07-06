@@ -18,10 +18,10 @@ describe('My First Test', () => {
         await pages.inventoryPage.addItemToCartById(0);
         expect(await pages.inventoryPage.getNumberOfItemsInCart()).toBe('1');
 
-        await pages.inventoryPage.shopingCart.click();
-        await expect(pages.shopingCartPage.cartItems).toBeElementsArrayOfSize(1);
+        await pages.inventoryPage.shoppingCart.click();
+        await expect(pages.shoppingCartPage.cartItems).toBeElementsArrayOfSize(1);
 
-        await pages.shopingCartPage.removeCartItemById(0);
-        await expect(pages.shopingCartPage.cartItems).not.toBeExisting();
+        await pages.shoppingCartPage.removeCartItemById(0);
+        await expect(pages.shoppingCartPage.cartItems).not.toBeExisting();
     });
 });
