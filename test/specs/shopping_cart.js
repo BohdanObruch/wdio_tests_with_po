@@ -11,7 +11,7 @@ describe('Adding random items to the shopping cart', () => {
 
         const allItems = await pages.inventoryPage.inventoryItems.length;
 
-        const randomItems = randomChoiceItems(allItems);
+        const randomItems = randomChoiceItems(allItems, 3);
 
         await pages.inventoryPage.addItemsToCart(randomItems);
 

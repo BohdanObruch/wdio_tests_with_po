@@ -1,7 +1,7 @@
-function randomChoiceItems(maxNumberOfRandomItems) {
+function randomChoiceItems(totalItemsCount, maxNumberOfRandomItems) {
     const result = [];
-    for (let i = 0; result.length < 2; i++) {
-        const randomNum = Math.floor(Math.random() * maxNumberOfRandomItems);
+    while (result.length < maxNumberOfRandomItems) {
+        const randomNum = Math.floor(Math.random() * totalItemsCount);
         if (!result.includes(randomNum)) {
             result.push(randomNum);
         }

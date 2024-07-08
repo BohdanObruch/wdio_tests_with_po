@@ -10,7 +10,7 @@ describe('Adding random items to the shopping cart', () => {
         await pages.loginPage.performLogin(standardUser.username, standardUser.password);
 
         const allItems = await pages.inventoryPage.inventoryItems.length;
-        const randomItems = randomChoiceItems(allItems);
+        const randomItems = randomChoiceItems(allItems, 3);
 
         await pages.inventoryPage.addItemsToCart(randomItems);
 
