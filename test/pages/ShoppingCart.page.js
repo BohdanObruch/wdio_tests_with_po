@@ -29,6 +29,7 @@ class ShoppingCartPage extends BaseSwagLabPage {
         await this.cartItems[id].$(this.removeItemSelector).click();
     }
 
+    get checkoutButton() { return $('#checkout'); }
 
     async getItemsPrices() {
         const elements = await $$(this.itemsPrice);

@@ -7,7 +7,7 @@ class InventoryPage extends BaseSwagLabPage {
 
     get inventoryItems() { return $$('.inventory_item'); }
 
-    get addItemToCartBtns() { return $$('[id^="add-to-cart"]'); }
+    ItemToCartBatons = '[id^="add-to-cart"]';
 
     inventoryItemsName = '.inventory_item_name';
 
@@ -45,7 +45,7 @@ class InventoryPage extends BaseSwagLabPage {
     }
 
     async addItemToCartById(id) {
-        await this.addItemToCartBtns[id].click();
+        await this.inventoryItems[id].$(this.ItemToCartBatons).click();
     }
 
     async getInventoryItemsAllPrices() {
